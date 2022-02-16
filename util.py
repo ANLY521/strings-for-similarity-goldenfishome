@@ -8,7 +8,7 @@ def parse_sts(data_file):
     texts = []
     labels = []
 
-    with open(data_file, 'r') as dd:
+    with open(data_file, 'r',encoding='UTF-8') as dd:
         for line in dd:
             fields = line.strip().split("\t")
             labels.append(float(fields[4]))

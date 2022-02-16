@@ -22,7 +22,7 @@ def symmetrical_nist(text_pair):
         nist_1 = 0.0
 
     try:
-        nist_1 = sentence_nist([toks2,],toks1)
+        nist_2 = sentence_nist([toks2,],toks1)
     except ZeroDivisionError:
         nist_2 = 0.0
 
