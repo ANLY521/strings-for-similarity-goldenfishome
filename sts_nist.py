@@ -11,8 +11,20 @@ def symmetrical_nist(text_pair):
     :param text_pair: iterable to two strings to compare
     :return: a float
     """
-    nist_1 = 0.0
-    nist_2 = 0.0
+    text1,text2 = text_pair
+
+    toks1 = word_tokenize(text1.lower())
+    toks2 = word_tokenize(text2.lower())
+
+    try:
+        nist_1 = sentence_nist([toks1,],toks2)
+    except ZeroDivisionError:
+        nist_1 = 0.0
+
+    try:
+        nist_1 = sentence_nist([toks2,],toks1)
+    except ZeroDivisionError:
+        nist_2 = 0.0
 
     return nist_1 + nist_2
 
@@ -38,7 +50,6 @@ def main(sts_data):
         print(f"Sentences: {texts[0]}\t{texts[1]}")
         # TODO 2: Calculate NIST for each pair of sentences
         # Define the function symmetrical_nist
-
         nist_total = symmetrical_nist(text_pair)
         print(f"Label: {label}, NIST: {nist_total:0.02f}\n")
         scores.append(nist_total)
@@ -53,8 +64,17 @@ def main(sts_data):
     assert nist_ab == nist_ba, f"Symmetrical NIST is not symmetrical! Got {nist_ab} and {nist_ba}"
 
     # TODO 3: find and print the sentences from the sample with the highest and lowest scores
+    min_score_index = np.argmin(scores)
+    min_score = scores[min_score_index]
+    print(f"Lowest score: {min_score}")
+    print(sample_text[min_score_index])
+    assert min_score == symmetrical_nist(sample_text[min_score_index])
 
-
+    max_score_index = np.argmax(scores)
+    max_score = scores[max_score_index]
+    print(f"Highest score: {max_score}")
+    print(sample_text[max_score_index])
+    assert max_score == symmetrical_nist(sample_text[max_score_index])
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
