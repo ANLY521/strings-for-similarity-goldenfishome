@@ -10,18 +10,31 @@ Data is from the [STS benchmark](http://ixa2.si.ehu.es/stswiki/index.php/STSbenc
 **TODO:**
 Describe each metric in ~ 1 sentence
 
+NIST is based on BLEU metric, but with some alternations of weighting averaging on n-gram informativeness.
+
+BLEU, Bilingual Evaluation Understudy score, involves with N-gram of size 1 to 4 overlap between machine translation output and reference 
+translation.
+
+Edit Distance measures the minimum number of editing steps to transform output to reference, including the steps of match, 
+substitution, insertion and deletion.
+
+Word Error Rate is a similar measurement as the edit distance, except having one extra step of dividing 
+the edit distance by length of the reference.
+
+Longest common substring is the number of the longest consecutive string appearing in both reference and the targeted text.
+
 **TODO:** Fill in the correlations. Expected output for DEV is provided; it is ok if your actual result
 varies slightly due to preprocessing/system difference, but the difference should be quite small.
 
 **Correlations:**
 
-Metric | Train | Dev | Test 
------- | ----- | --- | ----
-NIST | (fill me) | 0.593 | (fill me)
-BLEU | (fill me) | 0.433 | (fill me)
-WER | (fill me) | -0.452| (fill me)
-LCS | (fill me) | 0.468| (fill me)
-Edit Dist | (fill me) | -0.175| (fill me)
+Metric | Train  | Dev | Test 
+------ |--------| --- | ----
+NIST | 0.496  | 0.593 | 0.475
+BLEU | 0.612  | 0.433 | 0.603
+WER | -0.313 | -0.452| -0.326
+LCS | 0.452  | 0.468| 0.500
+Edit Dist | -0.002 | -0.175| -0.085
 
 **TODO:**
 Show usage of the homework script with command line flags (see example under lab, week 1).
